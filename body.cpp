@@ -36,24 +36,24 @@ void insertAyah(Root *family, char *nama, float warisan, bool status)
             if (isEmpty(family->root))
             {
                 family->root = newPerson;
-                printf("Data Ayah/Suami berhasil dimasukkan!\n");
+                printf("\tData Ayah/Suami berhasil dimasukkan!\n");
             }
             else
             {
-                printf("Error: Root (ayah) sudah ada.\n");
+                printf("\tError: Root (ayah) sudah ada.\n");
                 free(newPerson->nama); // free node
                 free(newPerson);       // free node
             }
         }
         else
         {
-            printf("Error: Alokasi memori untuk nama gagal.\n");
+            printf("\tError: Alokasi memori untuk nama gagal.\n");
             free(newPerson); // free node
         }
     }
     else
     {
-        printf("Error: Alokasi memori gagal.\n");
+        printf("\tError: Alokasi memori gagal.\n");
     }
 }
 

@@ -15,6 +15,37 @@ void freeTree(Person person) {
     }
 }
 
+// Fungsi untuk mengubah warna teks
+void setColor(int color) {
+    cout << "\033[" << color << "m";
+}
+
+// Fungsi untuk mengatur tampilan menu
+void displayMenu() {
+    setColor(36); // Cyan
+    cout << "=========================================" << endl;
+    setColor(32); // Green
+    cout << "\tSelamat Datang di FamRoots!" << endl;
+    setColor(36); // Cyan
+    cout << "=========================================" << endl;
+    setColor(0); // Reset
+    cout << "\tSilakan pilih opsi berikut:" << endl;
+    setColor(36); // Cyan
+    cout << "-----------------------------------------" << endl;
+    setColor(33); // Yellow
+    printf("\n\t[1] Tambahkan Ayah");
+    printf("\n\t[2] Tambahkan Ibu/Istri");
+    printf("\n\t[3] Tambahkan Anak");
+    printf("\n\t[4] Hapus Data");
+    printf("\n\t[5] Tampilkan Jumlah Warisan");
+    printf("\n\t[6] Tampilkan Jumlah Anak");
+    printf("\n\t[7] Tampilkan Tampilkan Root yang Terbentuk");
+    printf("\n\t[0] Keluar\n");
+    setColor(36); // Cyan
+    cout << "-----------------------------------------" << endl;
+    setColor(0); // Reset
+}
+
 int main()
 {
     Root family;
@@ -23,10 +54,8 @@ int main()
 
     for (;;)
     {
-        printf("\n\t[1] Tambah Ayah/Suami\n");
-        printf("\t[2] Tambah Ibu/Istri\n");
-        printf("\t[3] Tampil Detail Ayah\n");
-        printf("\t[0] Keluar\n");
+        displayMenu();
+
         printf("\tMasukkan pilihan : ");
         scanf(" %c", &menu); // Baca karakter menu, spasi sebelum %c untuk mengabaikan newline sebelumnya
 
