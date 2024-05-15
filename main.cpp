@@ -35,12 +35,13 @@ void displayMenu() {
     setColor(33); // Yellow
     printf("\n\t[1] Tambahkan Ayah");
     printf("\n\t[2] Tambahkan Ibu/Istri");
-    printf("\n\t[3] Tambahkan Anak");
-    printf("\n\t[4] Hapus Data");
-    printf("\n\t[5] Tampilkan Jumlah Warisan");
-    printf("\n\t[6] Tampilkan Jumlah Anak");
-    printf("\n\t[7] Tampilkan Tampilkan Root yang Terbentuk");
-    printf("\n\t[0] Keluar\n");
+    // printf("\n\t[3] Tambahkan Anak");
+    // printf("\n\t[4] Hapus Data");
+    // printf("\n\t[5] Tampilkan Jumlah Warisan");
+    // printf("\n\t[6] Tampilkan Jumlah Anak");
+    // printf("\n\t[7] Tampilkan Tampilkan Root yang Terbentuk");
+    printf("\n\t[8] Tampilkan Detail Ayah"); // ditampilin untuk ngecek apa nodenya berhasil atau engga
+    printf("\n\t[0] Keluar\n\n");
     setColor(36); // Cyan
     cout << "-----------------------------------------" << endl;
     setColor(0); // Reset
@@ -65,7 +66,7 @@ int main()
         switch (menu)
         {
         case '1':
-            printf("\tMasukkan Nama Ayah/Suami: ");
+            printf("\n\tMasukkan Nama Ayah/Suami: ");
             scanf("%s", nama); // Baca nama Ayah/Suami
             printf("\tMasukkan Warisan: ");
             scanf("%f", &warisan); // Baca warisan
@@ -78,8 +79,8 @@ int main()
             scanf("%s", namaSuami); // Baca nama Suami
             insertIstri(&family, nama, namaSuami, false); // false menunjukkan bahwa istri bukanlah seorang anak
             break;
-        case '3':
-            printf("\tDetail Node Ayah:\n");
+        case '8':
+            printf("\n\tDetail Node Ayah:\n");
             displayDetailNode(&family, family.root);
             break;
         case '0':
@@ -91,7 +92,7 @@ int main()
         }
 
         // Bersihkan newline di input buffer
-        while (getchar() != '\n');
+        // while (getchar() != '\n');
     }
     return 0;
 }
