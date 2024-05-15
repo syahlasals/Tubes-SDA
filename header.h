@@ -15,44 +15,54 @@
 #include <stdbool.h>
 #include <conio.h>
 #include <windows.h>
-#include <string>
+// #include <string>
 #include "boolean.h"
 
 using namespace std;
-#define Nil NULL
+// #define data(P)	(P)->data
+// #define next(p)	(p)->next 
+// #define max 50
 
 // typedef char* infotype;
 typedef struct TPerson * Person;
 typedef struct TPerson {
-    string nama;
+    // string nama;
+    char* nama;
     float warisan;
     bool status; // true if child, false otherwise
     Person next;
     Person first_child;
-} Person;
+} TPerson;
 
 typedef struct{
 	Person root;
 } Root;
 
-void createEmptyTree(Root *root);
+void createEmptyTree(Root *family);
 /* Membuat Tree baru yang masih kosong  */
 /* I.S : Tree belum terbuat */
 /* F.S : Tree sudah terbuat */
 
-bool isEmpty(Person *person);
+bool isEmpty(Person person);
 /* Mengecek apakah suatu tree kosong atau tidak */
 
-bool isRoot(Root root, Person person);
+bool isRoot(Root family, Person person);
 /* Mengecek apakah suatu node tersebut adalah root atau bukan */
 
-void insertNode(string nama, bool status);
+// bool isRoot(Root family, Person person);
 /* Membuat node dan memasukkan value kedalam node tersebut lalu mengembalikan node tersebut */
 
-Person searchNode(Root X, string nama);
+// void insertAyah(Root *family, string nama, float warisan, bool status);
+void insertAyah(Root *family, char* nama, float warisan, bool status);
+// void insertIstri(Root *family, string nama, string namaSuami, bool status);
+void insertIstri(Root *family, char* nama, char* namaSuami, bool status);
+void displayDetailNode(Root *family, Person person);
+// Person searchNode(Root *family, string nama);
+Person searchNode(Root *family, char* nama);
+
 /* Mencari suatu Node berdasarkan subvar nama lalu akan mengembalikan node tersebut jika ketemu */
 
-void deleteNode(Root * X, string nama);
+void deleteNode();
 /* Menghapus Node dari suatu Tree */
 /* I.S : Node belum terhapus */
 /* F.S : Node sudah terhapus */
