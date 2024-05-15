@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <iostream>
 #include "header.h"
+
+using namespace std;
 
 void freeTree(Person person) {
     if (person != NULL) {
