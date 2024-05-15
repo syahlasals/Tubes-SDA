@@ -1,13 +1,13 @@
+// main.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <iostream>
 #include "header.h"
 
-using namespace std;
-
-void freeTree(Person person) {
-    if (person != NULL) {
+void freeTree(Person person)
+{
+    if (person != NULL)
+    {
         freeTree(person->first_child);
         freeTree(person->next);
         free(person->nama);
@@ -15,35 +15,31 @@ void freeTree(Person person) {
     }
 }
 
-// Fungsi untuk mengubah warna teks
-void setColor(int color) {
-    cout << "\033[" << color << "m";
+void setColor(int color)
+{
+    printf("\033[%dm", color);
 }
 
-// Fungsi untuk mengatur tampilan menu
-void displayMenu() {
+void displayMenu()
+{
     setColor(36); // Cyan
-    cout << "=========================================" << endl;
+    printf("=========================================\n");
     setColor(32); // Green
-    cout << "\tSelamat Datang di FamRoots!" << endl;
+    printf("\tSelamat Datang di FamRoots!\n");
     setColor(36); // Cyan
-    cout << "=========================================" << endl;
+    printf("=========================================\n");
     setColor(0); // Reset
-    cout << "\tSilakan pilih opsi berikut:" << endl;
+    printf("\tSilakan pilih opsi berikut:\n");
     setColor(36); // Cyan
-    cout << "-----------------------------------------" << endl;
+    printf("-----------------------------------------\n");
     setColor(33); // Yellow
-    printf("\n\t[1] Tambahkan Ayah");
-    printf("\n\t[2] Tambahkan Ibu/Istri");
-    // printf("\n\t[3] Tambahkan Anak");
-    // printf("\n\t[4] Hapus Data");
-    // printf("\n\t[5] Tampilkan Jumlah Warisan");
-    // printf("\n\t[6] Tampilkan Jumlah Anak");
-    // printf("\n\t[7] Tampilkan Tampilkan Root yang Terbentuk");
-    printf("\n\t[8] Tampilkan Detail Ayah"); // ditampilin untuk ngecek apa nodenya berhasil atau engga
-    printf("\n\t[0] Keluar\n\n");
+    printf("\n\t[1] Tambahkan Ayah\n");
+    printf("\t[2] Tambahkan Ibu/Istri\n");
+    printf("\t[3] Tambahkan Anak\n"); // Added option for adding child
+    printf("\t[8] Tampilkan Detail Ayah\n");
+    printf("\t[0] Keluar\n\n");
     setColor(36); // Cyan
-    cout << "-----------------------------------------" << endl;
+    printf("-----------------------------------------\n");
     setColor(0); // Reset
 }
 
@@ -58,26 +54,33 @@ int main()
         displayMenu();
 
         printf("\tMasukkan pilihan : ");
-        scanf(" %c", &menu); // Baca karakter menu, spasi sebelum %c untuk mengabaikan newline sebelumnya
+        scanf(" %c", &menu);
 
-        char nama[50], namaSuami[50];
+        char nama[50], namaSuami[50], namaAyah[50]; // Added variable for child's father
         float warisan;
 
         switch (menu)
         {
         case '1':
             printf("\n\tMasukkan Nama Ayah/Suami: ");
-            scanf("%s", nama); // Baca nama Ayah/Suami
+            scanf("%s", nama);
             printf("\tMasukkan Warisan: ");
-            scanf("%f", &warisan); // Baca warisan
+            scanf("%f", &warisan);
             insertAyah(&family, nama, warisan, false);
             break;
         case '2':
             printf("\tMasukkan Nama Ibu/Istri: ");
-            scanf("%s", nama); // Baca nama Ibu/Istri
+            scanf("%s", nama);
             printf("\tMasukkan Nama Suami: ");
-            scanf("%s", namaSuami); // Baca nama Suami
-            insertIstri(&family, nama, namaSuami, false); // false menunjukkan bahwa istri bukanlah seorang anak
+            scanf("%s", namaSuami);
+            insertIstri(&family, nama, namaSuami, false);
+            break;
+        case '3': // Case for adding child
+            printf("\tMasukkan Nama Anak: ");
+            scanf("%s", nama);
+            printf("\tMasukkan Nama Ayah: ");
+            scanf("%s", namaAyah);
+            insertAnak(&family, nama, namaAyah);
             break;
         case '8':
             printf("\n\tDetail Node Ayah:\n");
@@ -90,9 +93,6 @@ int main()
             printf("\tPilihan tidak valid.\n");
             break;
         }
-
-        // Bersihkan newline di input buffer
-        // while (getchar() != '\n');
     }
     return 0;
 }

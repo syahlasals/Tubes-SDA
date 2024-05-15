@@ -1,7 +1,7 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include "header.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void createEmptyTree(Root *family)
 {
@@ -20,7 +20,6 @@ bool isRoot(Root family, Person person)
 
 void insertAyah(Root *family, char *nama, float warisan, bool status)
 {
-    // alokasi memori
     Person newPerson = (Person)malloc(sizeof(TPerson));
     if (newPerson != NULL)
     {
@@ -41,14 +40,14 @@ void insertAyah(Root *family, char *nama, float warisan, bool status)
             else
             {
                 printf("\tError: Root (ayah) sudah ada.\n");
-                free(newPerson->nama); // free node
-                free(newPerson);       // free node
+                free(newPerson->nama);
+                free(newPerson);
             }
         }
         else
         {
             printf("\tError: Alokasi memori untuk nama gagal.\n");
-            free(newPerson); // free node
+            free(newPerson);
         }
     }
     else
@@ -59,11 +58,9 @@ void insertAyah(Root *family, char *nama, float warisan, bool status)
 
 void insertIstri(Root *family, char *nama, char *namaSuami, bool status)
 {
-    // searchNode untuk mencari suami
     Person suami = searchNode(family, namaSuami);
     if (suami != NULL)
     {
-        // alokasi memori
         Person newPerson = (Person)malloc(sizeof(TPerson));
         if (newPerson != NULL)
         {
@@ -71,7 +68,7 @@ void insertIstri(Root *family, char *nama, char *namaSuami, bool status)
             if (newPerson->nama != NULL)
             {
                 strcpy(newPerson->nama, nama);
-                newPerson->warisan = 0.0; // default 0.0 untuk istri
+                newPerson->warisan = 0.0;
                 newPerson->status = status;
                 newPerson->next = NULL;
                 newPerson->first_child = NULL;
@@ -84,14 +81,14 @@ void insertIstri(Root *family, char *nama, char *namaSuami, bool status)
                 else
                 {
                     printf("\tSuami sudah memiliki istri.\n");
-                    free(newPerson->nama); // free node
-                    free(newPerson);       // free node
+                    free(newPerson->nama);
+                    free(newPerson);
                 }
             }
             else
             {
                 printf("\tError: Alokasi memori untuk nama gagal.\n");
-                free(newPerson); // free node
+                free(newPerson);
             }
         }
         else
@@ -105,6 +102,57 @@ void insertIstri(Root *family, char *nama, char *namaSuami, bool status)
     }
 }
 
+void insertAnak(Root *family, char *nama, char *namaAyah)
+{
+    Person ayah = searchNode(family, namaAyah);
+    if (ayah != NULL)
+    {
+        Person anak = (Person)malloc(sizeof(TPerson));
+        if (anak != NULL)
+        {
+            anak->nama = (char *)malloc(strlen(nama) + 1);
+            if (anak->nama != NULL)
+            {
+                strcpy(anak->nama, nama);
+                anak->warisan = 0.0;
+                anak->status = true;
+                anak->next = NULL;
+                anak->first_child = NULL;
+
+                if (ayah->first_child != NULL)
+                {
+                    Person istri = ayah->first_child;
+                    while (istri->next != NULL)
+                    {
+                        istri = istri->next;
+                    }
+                    istri->next = anak;
+                    printf("\tAnak berhasil ditambahkan sebagai anak dari istri ayah.\n");
+                }
+                else
+                {
+                    printf("\tError: Ayah belum memiliki istri.\n");
+                    free(anak->nama);
+                    free(anak);
+                }
+            }
+            else
+            {
+                printf("\tError: Alokasi memori untuk nama anak gagal.\n");
+                free(anak);
+            }
+        }
+        else
+        {
+            printf("\tError: Alokasi memori gagal untuk anak.\n");
+        }
+    }
+    else
+    {
+        printf("\tError: Ayah tidak ditemukan.\n");
+    }
+}
+
 Person searchNode(Root *family, char *nama)
 {
     Person current = family->root;
@@ -112,7 +160,7 @@ Person searchNode(Root *family, char *nama)
     {
         if (strcmp(current->nama, nama) == 0)
         {
-            return current; // Node found
+            return current;
         }
         current = current->next;
     }
@@ -133,6 +181,14 @@ void displayDetailNode(Root *family, Person person)
             {
                 printf("\tIstri root: %s\n", person->first_child->nama);
                 printf("\tWarisan istri: %.2f\n", person->first_child->warisan);
+                // Tampilkan anak-anak
+                printf("\tAnak-anak:\n");
+                Person anak = person->first_child->next;
+                while (anak != NULL)
+                {
+                    printf("\t- %s\n", anak->nama);
+                    anak = anak->next;
+                }
             }
             else
             {
