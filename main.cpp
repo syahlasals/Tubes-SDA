@@ -1,4 +1,10 @@
-// main.c
+/* File        : main.cpp 									    */  
+/* Deskripsi   : main file untuk ADT Non Binary Tree Warisan	*/ 
+/* Dibuat oleh : Agra Anisa Ibtisamah		231511067
+				 Elsa Monika Sinaga     	231511074
+				 Syahla Salsabila			231511095 		    */
+/* Tanggal     : 14-05-2024 								    */ 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -60,7 +66,7 @@ int main()
         printf("\tMasukkan pilihan : ");
         scanf(" %c", &menu);
 
-        char nama[50], namaSuami[50], namaAyah[50]; // Added variable for child's father
+        char nama[50], namaSuami[50], namaAyah[50];
         float warisan;
 
         switch (menu)

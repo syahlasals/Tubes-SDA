@@ -1,22 +1,27 @@
+/* File        : header.h 									    */  
+/* Deskripsi   : Header file untuk ADT Non Binary Tree Warisan	*/ 
+/* Dibuat oleh : Agra Anisa Ibtisamah		231511067
+				 Elsa Monika Sinaga     	231511074
+				 Syahla Salsabila			231511095 		    */
+/* Tanggal     : 14-05-2024 								    */ 
+
 #ifndef header_h
 #define header_h
 
 #include <stdlib.h>
 #include <stdbool.h>
 
-// Struct for a person in the family tree
 typedef struct TPerson *Person;
 typedef struct TPerson {
-    char *nama;            // Name of the person
-    float warisan;         // Inheritance amount
-    bool status;           // true if child, false otherwise
-    Person next;           // Pointer to the next sibling
-    Person first_child;    // Pointer to the first child
+    char *nama;
+    float warisan;
+    bool status;
+    Person next;
+    Person first_child;
 } TPerson;
 
-// Struct for the root of the family tree
 typedef struct{
-    Person root;    // Pointer to the root person
+    Person root;
 } Root;
 
 void createEmptyTree(Root *family);

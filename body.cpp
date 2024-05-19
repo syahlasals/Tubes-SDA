@@ -1,3 +1,10 @@
+/* File        : body.cpp 									    */  
+/* Deskripsi   : body file untuk ADT Non Binary Tree Warisan	*/ 
+/* Dibuat oleh : Agra Anisa Ibtisamah		231511067
+				 Elsa Monika Sinaga     	231511074
+				 Syahla Salsabila			231511095 		    */
+/* Tanggal     : 14-05-2024 								    */ 
+
 #include "header.h"
 #include <stdio.h>
 #include <stdlib.h>
