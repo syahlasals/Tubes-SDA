@@ -36,6 +36,9 @@ void displayMenu()
     printf("\n\t[1] Tambahkan Ayah\n");
     printf("\t[2] Tambahkan Ibu/Istri\n");
     printf("\t[3] Tambahkan Anak\n"); // Added option for adding child
+    printf("\t[4] Tampilkan Pohon Keluarga\n");
+    printf("\t[5] Tampilkan Jumlah Anak\n");
+    printf("\t[6] Tampilkan Detail Istri dan Anak\n");
     printf("\t[8] Tampilkan Detail Ayah\n");
     printf("\t[0] Keluar\n\n");
     setColor(36); // Cyan
@@ -48,6 +51,7 @@ int main()
     Root family;
     createEmptyTree(&family);
     char menu;
+    char namaNode[50];
 
     for (;;)
     {
@@ -81,6 +85,19 @@ int main()
             printf("\tMasukkan Nama Ayah: ");
             scanf("%s", namaAyah);
             insertAnak(&family, nama, namaAyah);
+            break;
+        case '4': // Case for displaying family tree
+            displayTree(&family);
+            break;
+        case '5': // Case for displaying number of children
+            printf("\tMasukkan Nama Ayah: ");
+            scanf("%s", namaAyah);
+            displayNumberOfChildren(&family, namaAyah);
+            break;
+        case '6':
+            printf("\n\tMasukkan Nama Ayah: ");
+            scanf("%s", namaNode);
+            displayNodeDetail(searchNode(&family, namaNode));
             break;
         case '8':
             printf("\n\tDetail Node Ayah:\n");

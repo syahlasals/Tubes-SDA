@@ -28,5 +28,9 @@ void insertAnak(Root *family, char *nama, char *namaAyah);
 void displayDetailNode(Root *family, Person person);
 Person searchNode(Root *family, char *nama);
 void deleteNode();
+void displayTreeNode(Person person, int depth);
+void displayTree(Root *family);
+void displayNumberOfChildren(Root *family, char *namaAyah);
+void displayNodeDetail(Person person);
 
 #endif

@@ -206,3 +206,92 @@ void displayDetailNode(Root *family, Person person)
         printf("\tNode tidak valid.\n");
     }
 }
+
+void displayTree(Root *family)
+{
+    if (isEmpty(family->root))
+    {
+        printf("Pohon keluarga kosong.\n");
+    }
+    else
+    {
+        printf("Tampilan Pohon Keluarga:\n");
+        displayTreeNode(family->root, 0);
+    }
+}
+
+void displayTreeNode(Person person, int depth)
+{
+    if (person != NULL)
+    {
+        // Tampilkan informasi node
+        for (int i = 0; i < depth; ++i)
+        {
+            printf("\t");
+        }
+        printf("- %s (Warisan: %.2f)\n", person->nama, person->warisan);
+
+        // Tampilkan anak-anak secara rekursif
+        if (person->first_child != NULL)
+        {
+            displayTreeNode(person->first_child, depth + 1);
+        }
+
+        // Tampilkan saudara kandung
+        if (person->next != NULL)
+        {
+            displayTreeNode(person->next, depth);
+        }
+    }
+}
+
+int countChildren(Person person) {
+    int count = 0;
+    Person child = person->first_child;
+    while (child != NULL) {
+        if (child->status) { // Skip the first child if it's an adult
+            count++;
+        }
+        child = child->next;
+    }
+    return count;
+}
+
+void displayNumberOfChildren(Root *family, char *namaAyah) {
+    Person ayah = searchNode(family, namaAyah);
+    if (ayah != NULL) {
+        int childrenCount = countChildren(ayah);
+        printf("\tJumlah anak dari %s adalah: %d\n", namaAyah, childrenCount);
+    } else {
+        printf("\tError: Ayah tidak ditemukan.\n");
+    }
+}
+
+void displayNodeDetail(Person person) {
+    if (person != NULL) {
+        printf("\tDetail Node:\n");
+        printf("\tNama: %s\n", person->nama);
+        printf("\tWarisan: %.2f\n", person->warisan);
+        
+        // Periksa apakah memiliki istri
+        if (person->first_child != NULL) {
+            printf("\tIstri: %s\n", person->first_child->nama);
+        } else {
+            printf("\tTidak memiliki istri.\n");
+        }
+        
+        // Periksa apakah memiliki anak
+        if (person->first_child != NULL && person->first_child->next != NULL) {
+            printf("\tAnak-anak:\n");
+            Person child = person->first_child->next;
+            while (child != NULL) {
+                printf("\t- %s\n", child->nama);
+                child = child->next;
+            }
+        } else {
+            printf("\tTidak memiliki anak.\n");
+        }
+    } else {
+        printf("\tNode tidak valid.\n");
+    }
+}
