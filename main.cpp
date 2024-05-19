@@ -68,54 +68,62 @@ int main()
 
         char nama[50], namaSuami[50], namaAyah[50];
         float warisan;
-
-        switch (menu)
-        {
-        case '1':
-            printf("\n\tMasukkan Nama Ayah/Suami: ");
-            scanf("%s", nama);
-            printf("\tMasukkan Warisan: ");
-            scanf("%f", &warisan);
-            insertAyah(&family, nama, warisan, false);
-            break;
-        case '2':
-            printf("\tMasukkan Nama Ibu/Istri: ");
-            scanf("%s", nama);
-            printf("\tMasukkan Nama Suami: ");
-            scanf("%s", namaSuami);
-            insertIstri(&family, nama, namaSuami, false);
-            break;
-        case '3': // Case for adding child
-            printf("\tMasukkan Nama Anak: ");
-            scanf("%s", nama);
-            printf("\tMasukkan Nama Ayah: ");
-            scanf("%s", namaAyah);
-            insertAnak(&family, nama, namaAyah);
-            break;
-        case '4': // Case for displaying family tree
-            displayTree(&family);
-            break;
-        case '5': // Case for displaying number of children
-            printf("\tMasukkan Nama Ayah: ");
-            scanf("%s", namaAyah);
-            displayNumberOfChildren(&family, namaAyah);
-            break;
-        case '6':
-            printf("\n\tMasukkan Nama Ayah: ");
-            scanf("%s", namaNode);
-            displayNodeDetail(searchNode(&family, namaNode));
-            break;
-        case '8':
-            printf("\n\tDetail Node Ayah:\n");
-            displayDetailNode(&family, family.root);
-            break;
-        case '0':
-            freeTree(family.root);
-            return 0;
-        default:
-            printf("\tPilihan tidak valid.\n");
-            break;
+        system("cls");
+        switch (menu) {
+            case '1':
+                printf("\n\tMasukkan Nama Ayah/Suami: ");
+                scanf("%s", nama);
+                printf("\tMasukkan Warisan: ");
+                scanf("%f", &warisan);
+                insertAyah(&family, nama, warisan, false);
+                waitForEnter(); // Menunggu input Enter dari user
+                break;
+            case '2':
+                printf("\tMasukkan Nama Ibu/Istri: ");
+                scanf("%s", nama);
+                printf("\tMasukkan Nama Suami: ");
+                scanf("%s", namaSuami);
+                insertIstri(&family, nama, namaSuami, false);
+                waitForEnter(); // Menunggu input Enter dari user
+                break;
+            case '3': // Case for adding child
+                printf("\tMasukkan Nama Anak: ");
+                scanf("%s", nama);
+                printf("\tMasukkan Nama Ayah: ");
+                scanf("%s", namaAyah);
+                insertAnak(&family, nama, namaAyah);
+                waitForEnter(); // Menunggu input Enter dari user
+                break;
+            case '4': // Case for displaying family tree
+                displayTree(&family);
+                waitForEnter(); // Menunggu input Enter dari user
+                break;
+            case '5': // Case for displaying number of children
+                printf("\tMasukkan Nama Ayah: ");
+                scanf("%s", namaAyah);
+                displayNumberOfChildren(&family, namaAyah);
+                waitForEnter(); // Menunggu input Enter dari user
+                break;
+            case '6':
+                printf("\n\tMasukkan Nama Ayah: ");
+                scanf("%s", namaNode);
+                displayNodeDetail(searchNode(&family, namaNode));
+                waitForEnter(); // Menunggu input Enter dari user
+                break;
+            case '8':
+                printf("\n\tDetail Node Ayah:\n");
+                displayDetailNode(&family, family.root);
+                waitForEnter(); // Menunggu input Enter dari user
+                break;
+            case '0':
+                freeTree(family.root);
+                return 0;
+            default:
+                printf("\tPilihan tidak valid.\n");
+                waitForEnter(); // Menunggu input Enter dari user
+                break;
         }
     }
+
     return 0;
 }

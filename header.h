@@ -37,5 +37,5 @@ void displayTreeNode(Person person, int depth);
 void displayTree(Root *family);
 void displayNumberOfChildren(Root *family, char *namaAyah);
 void displayNodeDetail(Person person);
-
+void waitForEnter();
 #endif
