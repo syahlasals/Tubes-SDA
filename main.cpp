@@ -103,7 +103,8 @@ int main()
         case '6':
             printf("\n\tMasukkan Nama Ayah: ");
             scanf("%s", namaNode);
-            displayNodeDetail(searchNode(&family, namaNode));
+            // displayNodeDetail(searchNode(&family, namaNode));
+            displayNodeDetail(searchNode(family.root, namaNode));
             break;
         case '8':
             printf("\n\tDetail Node Ayah:\n");
