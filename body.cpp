@@ -385,3 +385,10 @@ void displayNodeDetail(Person person)
         printf("\tNode tidak valid.\n");
     }
 }
+
+void waitForEnter() {
+    printf("\n\tTekan Enter untuk kembali ke menu utama...");
+    getchar(); // Menunggu input enter dari user
+    while(getchar() != '\n'); // Membersihkan buffer input
+    system("cls");
+}
