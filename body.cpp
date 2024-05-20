@@ -309,3 +309,75 @@ void waitForEnter() {
     while(getchar() != '\n'); // Membersihkan buffer input
     system("cls");
 }
+
+void deleteNode(Root *family, char *nama) {
+    // Check if the tree is empty
+    if (family->root == NULL) {
+        printf("\tError: Pohon keluarga kosong.\n");
+        return;
+    }
+
+    // Jika root yang akan dihapus
+    if (strcmp(family->root->nama, nama) == 0) {
+        Person temp = family->root;
+        
+        if (temp->warisan > 0) {
+            Person first_child = temp->first_child;
+            Person next = (first_child != NULL) ? first_child->next : NULL;
+
+            int jumlahAnak = 0;
+            float totalWarisan = temp->warisan;
+            float warisanBagian = totalWarisan * 0.05;
+
+            while (first_child!=NULL)
+            {
+                jumlahAnak++;
+                first_child = first_child->next;
+            }
+
+            float warisanAnak = (totalWarisan - warisanBagian) / jumlahAnak;
+            float warisanIstri = warisanAnak + warisanBagian;
+            
+            // // Transfer warisan ke istri
+            if (temp->first_child != NULL) {
+                temp->first_child->warisan += warisanIstri;
+            }
+            // // Transfer warisan ke anak
+            while (next != NULL) {
+                next->warisan += warisanAnak;
+                next = next->next;
+            }
+        }
+
+        // Menetapkan istri sebagai root baru
+        family->root = family->root->first_child;
+        free(temp->nama);
+        free(temp);
+        printf("\tRoot berhasil dihapus.\n");
+        return;
+    }
+
+    // Jika bukan root yang dihapus, panggil fungsi helper untuk mencari dan menghapus node
+    deleteNodeHelper(&(family->root->first_child), nama);
+    deleteNodeHelper(&(family->root->next), nama);
+}
+
+
+
+void deleteNodeHelper(Person *current, char *nama) {
+    if (*current == NULL) {
+        return;
+    }
+
+    if (strcmp((*current)->nama, nama) == 0) {
+        Person temp = *current;
+        *current = (*current)->next;
+        free(temp->nama);
+        free(temp);
+        printf("\tNode berhasil dihapus.\n");
+        return;
+    }
+
+    deleteNodeHelper(&(*current)->next, nama);
+    deleteNodeHelper(&(*current)->first_child, nama);
+}

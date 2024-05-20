@@ -46,6 +46,7 @@ void displayMenu()
     printf("\t[5] Tampilkan Jumlah Anak\n");
     printf("\t[6] Tampilkan Detail Istri dan Anak\n");
     printf("\t[8] Tampilkan Detail Ayah\n");
+    printf("\t[9] Hapus Node\n");
     printf("\t[0] Keluar\n\n");
     setColor(36); // Cyan
     printf("-----------------------------------------\n");
@@ -114,6 +115,12 @@ int main()
                 printf("\n\tDetail Node Ayah:\n");
                 displayDetailNode(&family, family.root);
                 waitForEnter(); // Menunggu input Enter dari user
+                break;
+            case '9':
+                printf("\tMasukkan Nama Node yang Ingin Dihapus: ");
+                scanf("%s", namaNode);
+                deleteNode(&family, namaNode);
+                waitForEnter(); // Menunggu user menekan Enter sebelum kembali ke menu utama
                 break;
             case '0':
                 freeTree(family.root);

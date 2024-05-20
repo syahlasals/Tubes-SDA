@@ -38,4 +38,6 @@ void displayTree(Root *family);
 void displayNumberOfChildren(Root *family, char *namaAyah);
 void displayNodeDetail(Person person);
 void waitForEnter();
+void deleteNodeHelper(Person *current, char *nama);
+void deleteNode(Root *family, char *nama);
 #endif
