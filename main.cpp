@@ -69,6 +69,7 @@ int main()
 
         char nama[50], namaSuami[50], namaAyah[50];
         float warisan;
+
         system("cls");
         switch (menu) {
             case '1':
@@ -108,7 +109,8 @@ int main()
             case '6':
                 printf("\n\tMasukkan Nama Ayah: ");
                 scanf("%s", namaNode);
-                displayNodeDetail(searchNode(&family, namaNode));
+                // displayNodeDetail(searchNode(&family, namaNode));
+                displayNodeDetail(searchNode(family.root, namaNode));
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
             case '8':
