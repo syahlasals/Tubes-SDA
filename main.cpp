@@ -45,7 +45,8 @@ void displayMenu()
     printf("\t[4] Tampilkan Pohon Keluarga\n");
     printf("\t[5] Tampilkan Jumlah Anak\n");
     printf("\t[6] Tampilkan Detail Istri dan Anak\n");
-    printf("\t[8] Tampilkan Detail Ayah\n");
+    printf("\t[7] Tampilkan Detail Ayah\n");
+    printf("\t[8] Cari\n");
     printf("\t[9] Hapus Node\n");
     printf("\t[0] Keluar\n\n");
     setColor(36); // Cyan
@@ -57,7 +58,7 @@ int main()
 {
     Root family;
     createEmptyTree(&family);
-    char menu;
+    int menu;
     char namaNode[50];
 
     for (;;)
@@ -65,14 +66,14 @@ int main()
         displayMenu();
 
         printf("\tMasukkan pilihan : ");
-        scanf(" %c", &menu);
+        scanf("%d", &menu);
 
         char nama[50], namaSuami[50], namaAyah[50];
         float warisan;
 
         system("cls");
         switch (menu) {
-            case '1':
+            case 1:
                 printf("\n\tMasukkan Nama Ayah/Suami: ");
                 scanf("%s", nama);
                 printf("\tMasukkan Warisan: ");
@@ -80,7 +81,7 @@ int main()
                 insertAyah(&family, nama, warisan, false);
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
-            case '2':
+            case 2:
                 printf("\tMasukkan Nama Ibu/Istri: ");
                 scanf("%s", nama);
                 printf("\tMasukkan Nama Suami: ");
@@ -88,7 +89,7 @@ int main()
                 insertIstri(&family, nama, namaSuami, false);
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
-            case '3': // Case for adding child
+            case 3: // Case for adding child
                 printf("\tMasukkan Nama Anak: ");
                 scanf("%s", nama);
                 printf("\tMasukkan Nama Ayah: ");
@@ -96,35 +97,41 @@ int main()
                 insertAnak(&family, nama, namaAyah);
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
-            case '4': // Case for displaying family tree
+            case 4: // Case for displaying family tree
                 displayTree(&family);
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
-            case '5': // Case for displaying number of children
+            case 5: // Case for displaying number of children
                 printf("\tMasukkan Nama Ayah: ");
                 scanf("%s", namaAyah);
                 displayNumberOfChildren(&family, namaAyah);
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
-            case '6':
+            case 6:
                 printf("\n\tMasukkan Nama Ayah: ");
                 scanf("%s", namaNode);
                 // displayNodeDetail(searchNode(&family, namaNode));
                 displayNodeDetail(searchNode(family.root, namaNode));
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
-            case '8':
+            case 7:
                 printf("\n\tDetail Node Ayah:\n");
                 displayDetailNode(&family, family.root);
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
-            case '9':
+            case 8:
+                printf("\tCari Nama: ");
+                scanf("%s", nama);
+                searchPerson(&family, nama);
+                waitForEnter();
+                break;
+            case 9:
                 printf("\tMasukkan Nama Node yang Ingin Dihapus: ");
                 scanf("%s", namaNode);
                 deleteNode(&family, namaNode);
                 waitForEnter(); // Menunggu user menekan Enter sebelum kembali ke menu utama
                 break;
-            case '0':
+            case 0:
                 freeTree(family.root);
                 return 0;
             default:
