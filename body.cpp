@@ -441,8 +441,10 @@ void deleteNode(Root *family, char *nama) {
             float warisanIstri = warisanAnak + warisanBagian;
             
             // // Transfer warisan ke istri
-            if (temp->first_child != NULL) {
+            if (temp->first_child != NULL && temp->first_child->status == false) {
                 temp->first_child->warisan += warisanIstri;
+            }else{
+                temp->first_child->warisan += warisanAnak;
             }
             // // Transfer warisan ke anak
             while (next != NULL) {
@@ -452,7 +454,9 @@ void deleteNode(Root *family, char *nama) {
         }
 
         // Menetapkan istri sebagai root baru
-        family->root = family->root->first_child;
+        Person newFirst = temp->first_child->next;
+        family->root = temp->first_child;
+        family->root->first_child = newFirst;
         free(temp->nama);
         free(temp);
         printf("\tRoot berhasil dihapus.\n");
