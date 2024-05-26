@@ -119,9 +119,13 @@ int main()
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
             case '9':
+                if (family.root != NULL){
                 printf("\tMasukkan Nama Node yang Ingin Dihapus: ");
                 scanf("%s", namaNode);
                 deleteNode(&family, namaNode);
+                } else {
+                    deleteNode(&family,namaNode);
+                }
                 waitForEnter(); // Menunggu user menekan Enter sebelum kembali ke menu utama
                 break;
             case '0':

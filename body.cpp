@@ -394,7 +394,7 @@ void waitForEnter() {
 }
 
 void deleteNode(Root *family, char *nama) {
-    // Check if the tree is empty
+    // mengecek apakah tree kosong
     if (family->root == NULL) {
         printf("\tError: Pohon keluarga kosong.\n");
         return;
@@ -404,7 +404,7 @@ void deleteNode(Root *family, char *nama) {
     if (strcmp(family->root->nama, nama) == 0) {
         Person temp = family->root;
         
-        if (temp->warisan > 0) {
+        if (temp->warisan > 0 && temp->status == false) {
             Person first_child = temp->first_child;
             Person next = (first_child != NULL) ? first_child->next : NULL;
 
@@ -419,29 +419,45 @@ void deleteNode(Root *family, char *nama) {
             }
 
             float warisanAnak = (totalWarisan - warisanBagian) / jumlahAnak;
+            float warisanAnakAnak = totalWarisan / jumlahAnak;
             float warisanIstri = warisanAnak + warisanBagian;
             
+            first_child = temp->first_child;
             // // Transfer warisan ke istri
             if (temp->first_child != NULL && temp->first_child->status == false) {
                 temp->first_child->warisan += warisanIstri;
-            }else{
-                temp->first_child->warisan += warisanAnak;
+            } else {
+                temp->first_child->warisan += warisanAnakAnak;
             }
-            // // Transfer warisan ke anak
+
+            next = first_child->next;
+            // Transfer warisan ke anak
             while (next != NULL) {
-                next->warisan += warisanAnak;
+                if (temp->first_child != NULL && temp->first_child->status == false){
+                    next->warisan += warisanAnak;
+                } else {
+                    next->warisan += warisanAnakAnak;
+                }
                 next = next->next;
             }
         }
 
-        // Menetapkan istri sebagai root baru
-        Person newFirst = temp->first_child->next;
-        family->root = temp->first_child;
-        family->root->first_child = newFirst;
+        if(temp->first_child != NULL){
+            // Menetapkan istri sebagai root baru
+            family->root = temp->first_child;
+            family->root->first_child = temp->first_child->next;
+            temp->first_child->next = NULL;
+        } else {
+            // jika root tidak memiliki firstchild, tree akan menjadi kosong
+            family->root = NULL;
+        }
+
         free(temp->nama);
         free(temp);
         printf("\tRoot berhasil dihapus.\n");
         return;
+    } else {
+        printf ("\tError : Data tidak ditemukan");
     }
 
     // Jika bukan root yang dihapus, panggil fungsi helper untuk mencari dan menghapus node
@@ -462,7 +478,6 @@ void deleteNodeHelper(Person *current, char *nama) {
         free(temp->nama);
         free(temp);
         printf("\tNode berhasil dihapus.\n");
-        return;
     }
 
     deleteNodeHelper(&(*current)->next, nama);
