@@ -160,6 +160,12 @@ void insertIstri(Root *family, char *nama, char *namaSuami, bool status)
 
 void insertAnak(Root *family, char *nama, char *namaAyah)
 {
+    if (searchNode(family->root, nama) != NULL)
+    {
+        printf("\tError: Nama '%s' sudah ada dalam pohon keluarga.\n", nama);
+        return;
+    }
+
     Person ayah = searchNode(family->root, namaAyah);
     if (ayah != NULL)
     {
@@ -209,20 +215,8 @@ void insertAnak(Root *family, char *nama, char *namaAyah)
     }
 }
 
-// Person searchNode(Root *family, char *nama)
 Person searchNode(Person person, char *nama)
 {
-    // Person current = family->root;
-    // while (current != NULL)
-    // {
-    //     if (strcmp(current->nama, nama) == 0)
-    //     {
-    //         return current;
-    //     }
-    //     current = current->next;
-    // }
-    // printf("\tError: Data tidak ditemukan.\n");
-    // return NULL;
     if(person == NULL){
         return NULL;
     }
@@ -240,6 +234,32 @@ Person searchNode(Person person, char *nama)
     return searchNode(person->next, nama);
 }
 
+void searchPerson(Root *family, char* nama)
+{
+    Person person = searchNode(family->root, nama);
+    if (person != NULL)
+    {
+        printf("\tData Ditemukan!\n");
+
+        // if((*family, person))
+        // {
+        //     displayDetailNode(family, person);
+        // }
+        // else{
+        //     displayNodeDetail(person);
+        // }
+        if (person->status == true){ // jika status == true
+            printf("\tStatus : Anak");
+        }
+        else{
+            printf("\tStatus : Orang tua");
+        }
+    }
+    else{
+        printf("\t Data tidak ditemukan!");
+    }
+}
+
 void displayDetailNode(Root *family, Person person)
 {
     if (person != NULL)
@@ -247,30 +267,28 @@ void displayDetailNode(Root *family, Person person)
         if (isRoot(*family, person))
         {
             printf("\tNode ini adalah root.\n");
-            printf("\tNama root: %s\n", person->nama);
-            printf("\tWarisan root: %.2f\n", person->warisan);
-            if (person->first_child != NULL)
+            printf("\tNama : %s\n", person->nama);
+            printf("\tWarisan : %.2f\n", person->warisan);
+            if (person->first_child != NULL && person->first_child->status == false)
             {
-                printf("\tIstri root: %s\n", person->first_child->nama);
-                printf("\tWarisan istri: %.2f\n", person->first_child->warisan);
+                printf("\tPasangan : %s\n", person->first_child->nama);
                 // Tampilkan anak-anak
-                printf("\tAnak-anak:\n");
-                Person anak = person->first_child->next;
-                while (anak != NULL)
+
+                if (person->first_child->next != NULL && person->first_child->next->status == true)
                 {
-                    printf("\t- %s\n", anak->nama);
-                    anak = anak->next;
+                    printf("\tAnak-anak: \n");
+                    Person anak = person->first_child->next;
+                    while (anak != NULL)
+                    {
+                        printf("\t- %s\n", anak->nama);
+                        anak = anak->next;
+                    }
                 }
             }
             else
             {
                 printf("\tRoot tidak memiliki istri.\n");
             }
-        }
-        else
-        {
-            printf("\tNode bukan root.\n");
-            printf("\tNama: %s, Warisan: %.2f\n", person->nama, person->warisan);
         }
     }
     else
@@ -355,7 +373,7 @@ void displayNodeDetail(Person person)
         printf("\tWarisan: %.2f\n", person->warisan);
 
         // Periksa apakah memiliki istri
-        if (person->first_child != NULL)
+        if (person->first_child != NULL && person->first_child->status == false)
         {
             printf("\tIstri: %s\n", person->first_child->nama);
         }
