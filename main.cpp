@@ -26,6 +26,12 @@ void setColor(int color)
     printf("\033[%dm", color);
 }
 
+bool isValidFloat(const char *str) {
+    char *endptr;
+    strtof(str, &endptr);
+    return *endptr == '\0';
+}
+
 void displayMenu()
 {
     setColor(36); // Cyan
@@ -68,7 +74,7 @@ int main()
         printf("\tMasukkan pilihan : ");
         scanf("%d", &menu);
 
-        char nama[50], namaSuami[50], namaAyah[50];
+        char nama[50], namaSuami[50], namaAyah[50], inputWarisan[50];
         float warisan;
 
         system("cls");
@@ -76,8 +82,15 @@ int main()
             case 1:
                 printf("\n\tMasukkan Nama Ayah/Suami: ");
                 scanf("%s", nama);
-                printf("\tMasukkan Warisan: ");
-                scanf("%f", &warisan);
+                do {
+                    printf("\tMasukkan Warisan: ");
+                    scanf("%s", inputWarisan);
+                    if (!isValidFloat(inputWarisan)) {
+                        printf("\tError: Input warisan harus berupa angka.\n");
+                    }
+                } while (!isValidFloat(inputWarisan));
+                
+                warisan = strtof(inputWarisan, NULL);
                 insertAyah(&family, nama, warisan, false);
                 waitForEnter(); // Menunggu input Enter dari user
                 break;

@@ -215,7 +215,6 @@ void insertAnak(Root *family, char *nama, char *namaAyah)
     }
 }
 
-// Person searchNode(Root *family, char *nama)
 Person searchNode(Person person, char *nama)
 {
     if(person == NULL){
@@ -242,18 +241,18 @@ void searchPerson(Root *family, char* nama)
     {
         printf("\tData Ditemukan!\n");
 
-        if((*family, person))
-        {
-            displayDetailNode(family, person);
-        }
-        else{
-            displayNodeDetail(person);
-        }
+        // if((*family, person))
+        // {
+        //     displayDetailNode(family, person);
+        // }
+        // else{
+        //     displayNodeDetail(person);
+        // }
         if (person->status == true){ // jika status == true
             printf("\tStatus : Anak");
         }
         else{
-            printf("\tStatus : Orang tua)");
+            printf("\tStatus : Orang tua");
         }
     }
     else{
@@ -268,12 +267,11 @@ void displayDetailNode(Root *family, Person person)
         if (isRoot(*family, person))
         {
             printf("\tNode ini adalah root.\n");
-            printf("\tNama root: %s\n", person->nama);
-            printf("\tWarisan root: %.2f\n", person->warisan);
+            printf("\tNama : %s\n", person->nama);
+            printf("\tWarisan : %.2f\n", person->warisan);
             if (person->first_child != NULL && person->first_child->status == false)
             {
-                printf("\tIstri root: %s\n", person->first_child->nama);
-                // printf("\tWarisan istri: %.2f\n", person->first_child->warisan);
+                printf("\tPasangan : %s\n", person->first_child->nama);
                 // Tampilkan anak-anak
 
                 if (person->first_child->next != NULL && person->first_child->next->status == true)
@@ -292,11 +290,6 @@ void displayDetailNode(Root *family, Person person)
                 printf("\tRoot tidak memiliki istri.\n");
             }
         }
-        // else
-        // {
-        //     printf("\tNode bukan root.\n");
-        //     printf("\tNama: %s, Warisan: %.2f\n", person->nama, person->warisan);
-        // }
     }
     else
     {
