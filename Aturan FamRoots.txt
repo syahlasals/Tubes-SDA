@@ -1,0 +1,24 @@
+************************************************************
+*                       PERATURAN                          *
+*                        APLIKASI                          *
+*                       FAMROOTS                           *
+************************************************************
+
+1. Warisan hanya dapat diturunkan dari ayah atau suami dan ibu atau istri.
+────────────────────────────────────────────────────────────────────────────
+2. Penurunan warisan tidak memandang gender atau urutan anak dalam keluarga.
+────────────────────────────────────────────────────────────────────────────
+3. Warisan yang diturunkan berupa uang.
+────────────────────────────────────────────────────────────────────────────
+4. Pembagian warisan:
+   ─ Jika ada istri, maka istri mendapatkan 5% lebih banyak dari total warisan dibandingkan anak-anaknya.
+────────────────────────────────────────────────────────────────────────────
+5. Jika node ibu dihapus, maka warisannya terbagi rata kepada setiap anak-anaknya.
+────────────────────────────────────────────────────────────────────────────
+6. Jika node anak yang dihapus, maka warisan tidak akan dibagi kepada siapapun.
+────────────────────────────────────────────────────────────────────────────
+
+************************************************************
+*                     TERIMA KASIH                          *
+*          TELAH MENGGUNAKAN APLIKASI FAMROOTS              *
+************************************************************
