@@ -50,10 +50,10 @@ void displayMenu()
     printf("\t[3] Tambahkan Anak\n"); // Added option for adding child
     printf("\t[4] Tampilkan Pohon Keluarga\n");
     printf("\t[5] Tampilkan Jumlah Anak\n");
-    printf("\t[6] Tampilkan Detail Istri dan Anak\n");
-    printf("\t[7] Tampilkan Detail Ayah\n");
-    printf("\t[8] Cari\n");
-    printf("\t[9] Hapus Node\n");
+    // printf("\t[6] Tampilkan Detail Istri dan Anak\n");
+    // printf("\t[7] Tampilkan Detail Ayah\n");
+    printf("\t[6] Cari\n");
+    printf("\t[7] Hapus Node\n");
     printf("\t[0] Keluar\n\n");
     setColor(36); // Cyan
     printf("-----------------------------------------\n");
@@ -121,24 +121,12 @@ int main()
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
             case 6:
-                printf("\n\tMasukkan Nama Ayah: ");
-                scanf("%s", namaNode);
-                // displayNodeDetail(searchNode(&family, namaNode));
-                displayNodeDetail(searchNode(family.root, namaNode));
-                waitForEnter(); // Menunggu input Enter dari user
-                break;
-            case 7:
-                printf("\n\tDetail Node Ayah:\n");
-                displayDetailNode(&family, family.root);
-                waitForEnter(); // Menunggu input Enter dari user
-                break;
-            case 8:
                 printf("\tCari Nama: ");
                 scanf("%s", nama);
                 searchPerson(&family, nama);
                 waitForEnter();
                 break;
-            case 9:
+            case 7:
                 if (family.root != NULL){
                 printf("\tMasukkan Nama Node yang Ingin Dihapus: ");
                 scanf("%s", namaNode);

@@ -245,28 +245,22 @@ void searchPerson(Root *family, char* nama)
     Person person = searchNode(family->root, nama);
     if (person != NULL)
     {
-        printf("\tData Ditemukan!\n");
+        printf("\n\tData Ditemukan!\n");
 
-        // if((*family, person))
-        // {
-        //     displayDetailNode(family, person);
-        // }
-        // else{
-        //     displayNodeDetail(person);
-        // }
-        if (person->status == true){ // jika status == true
-            printf("\tStatus : Anak");
+        if(isRoot(*family, person))
+        {
+            detailRoot(family, person);
         }
         else{
-            printf("\tStatus : Orang tua");
+            detailNode(person);
         }
     }
     else{
-        printf("\t Data tidak ditemukan!");
+        printf("\tData tidak ditemukan!");
     }
 }
 
-void displayDetailNode(Root *family, Person person)
+void detailRoot(Root *family, Person person)
 {
     if (person != NULL)
     {
@@ -275,26 +269,7 @@ void displayDetailNode(Root *family, Person person)
             printf("\tNode ini adalah root.\n");
             printf("\tNama : %s\n", person->nama);
             printf("\tWarisan : %.2f\n", person->warisan);
-            if (person->first_child != NULL && person->first_child->status == false)
-            {
-                printf("\tPasangan : %s\n", person->first_child->nama);
-                // Tampilkan anak-anak
-
-                if (person->first_child->next != NULL && person->first_child->next->status == true)
-                {
-                    printf("\tAnak-anak: \n");
-                    Person anak = person->first_child->next;
-                    while (anak != NULL)
-                    {
-                        printf("\t- %s\n", anak->nama);
-                        anak = anak->next;
-                    }
-                }
-            }
-            else
-            {
-                printf("\tRoot tidak memiliki istri.\n");
-            }
+            printf("\tStatus : %s\n", (person->status ? "Anak" : "Orang tua"));
         }
     }
     else
@@ -370,39 +345,41 @@ void displayNumberOfChildren(Root *family, char *namaAyah)
     }
 }
 
-void displayNodeDetail(Person person)
+void detailNode(Person person)
 {
     if (person != NULL)
     {
         printf("\tDetail Node:\n");
         printf("\tNama: %s\n", person->nama);
         printf("\tWarisan: %.2f\n", person->warisan);
+        printf("\tStatus : %s\n", (person->status ? "Anak" : "Orang tua"));
 
         // Periksa apakah memiliki istri
-        if (person->first_child != NULL && person->first_child->status == false)
-        {
-            printf("\tIstri: %s\n", person->first_child->nama);
-        }
-        else
-        {
-            printf("\tTidak memiliki istri.\n");
-        }
+        // if (person->first_child != NULL && person->first_child->status == false)
+        // {
+        //     printf("\tIstri: %s\n", person->first_child->nama);
+        // }
+        // else
+        // {
+        //     printf("\tTidak memiliki istri.\n");
+        // }
 
-        // Periksa apakah memiliki anak
-        if (person->first_child != NULL && person->first_child->next != NULL)
-        {
-            printf("\tAnak-anak:\n");
-            Person child = person->first_child->next;
-            while (child != NULL)
-            {
-                printf("\t- %s\n", child->nama);
-                child = child->next;
-            }
-        }
-        else
-        {
-            printf("\tTidak memiliki anak.\n");
-        }
+        // // Periksa apakah memiliki anak
+        // if (person->first_child != NULL && person->first_child->next != NULL)
+        // {
+        //     printf("\tAnak-anak:\n");
+        //     Person child = person->first_child->next;
+        //     while (child != NULL)
+        //     {
+        //         printf("\t- %s\n", child->nama);
+        //         child = child->next;
+        //     }
+        // }
+        // else
+        // {
+        //     printf("\tTidak memiliki anak.\n");
+        // }
+        
     }
     else
     {
