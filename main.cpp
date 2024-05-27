@@ -50,8 +50,6 @@ void displayMenu()
     printf("\t[3] Tambahkan Anak\n"); // Added option for adding child
     printf("\t[4] Tampilkan Pohon Keluarga\n");
     printf("\t[5] Tampilkan Jumlah Anak\n");
-    // printf("\t[6] Tampilkan Detail Istri dan Anak\n");
-    // printf("\t[7] Tampilkan Detail Ayah\n");
     printf("\t[6] Cari\n");
     printf("\t[7] Hapus Node\n");
     printf("\t[0] Keluar\n\n");
@@ -69,6 +67,7 @@ int main()
 
     for (;;)
     {
+        displayFamroots();
         displayMenu();
 
         printf("\tMasukkan pilihan : ");
