@@ -65,6 +65,12 @@ void insertAyah(Root *family, char *nama, float warisan, bool status)
 
 void insertIstri(Root *family, char *nama, char *namaSuami, bool status)
 {
+    if (searchNode(family->root, nama) != NULL)
+    {
+        printf("\tError: Nama istri '%s' sudah ada dalam pohon keluarga.\n", nama);
+        return;
+    }
+
     Person suami = searchNode(family->root, namaSuami);
     if (suami != NULL)
     {
