@@ -74,7 +74,7 @@ int main()
     printf("\n\tMasukkan Nama Ayah/Suami: ");
     scanf("%s", nama);
     do {
-        printf("\tMasukkan Warisan: ");
+        printf("\tMasukkan Warisan: Rp. ");
         scanf("%s", inputWarisan);
         if (!isValidFloat(inputWarisan)) {
             printf("\tError: Input warisan harus berupa angka.\n");
@@ -119,7 +119,7 @@ int main()
                 printf("\n\tMasukkan Nama Ayah/Suami: ");
                 scanf("%s", nama);
                 do {
-                    printf("\tMasukkan Warisan: ");
+                    printf("\tMasukkan Warisan: Rp.");
                     scanf("%s", inputWarisan);
                     if (!isValidFloat(inputWarisan)) {
                         printf("\tError: Input warisan harus berupa angka.\n");

@@ -250,8 +250,8 @@ void detailRoot(Root *family, Person person)
         if (isRoot(*family, person))
         {
             printf("\tNode ini adalah root.\n");
-            printf("\tNama : %s\n", person->nama);
-            printf("\tWarisan : %.2f\n", person->warisan);
+            printf("\tNama: %s\n", person->nama);
+            printf("\tWarisan: Rp. %.2f\n", person->warisan);
             printf("\tStatus : %s\n", (person->status ? "Anak" : "Orang tua"));
         }
     }
@@ -283,7 +283,7 @@ void displayTreeNode(Person person, int depth)
         {
             printf("\t");
         }
-        printf("- %s (Warisan: %.2f)\n", person->nama, person->warisan);
+        printf("- %s (Warisan: Rp. %.2f)\n", person->nama, person->warisan);
 
         // Tampilkan anak-anak secara rekursif
         if (person->first_child != NULL)
@@ -334,7 +334,7 @@ void detailNode(Person person)
     {
         printf("\tDetail Node:\n");
         printf("\tNama: %s\n", person->nama);
-        printf("\tWarisan: %.2f\n", person->warisan);
+        printf("\tWarisan: Rp. %.2f\n", person->warisan);
         printf("\tStatus : %s\n", (person->status ? "Anak" : "Orang tua"));
     }
     else
