@@ -93,6 +93,7 @@ void insertIstri(Root *family, char *nama, char *namaSuami, bool status)
         return;
     }
 
+    // Cari node suami dalam pohon
     Person suami = searchNode(family->root, namaSuami);
     if (suami != NULL)
     {
@@ -102,6 +103,7 @@ void insertIstri(Root *family, char *nama, char *namaSuami, bool status)
             // Periksa apakah ayah sudah memiliki istri
             if (suami->first_child == NULL)
             {
+                // Buat node baru untuk istri
                 Person newPerson = (Person)malloc(sizeof(TPerson));
                 if (newPerson != NULL)
                 {
@@ -134,50 +136,9 @@ void insertIstri(Root *family, char *nama, char *namaSuami, bool status)
                 printf("\tSuami (ayah) sudah memiliki istri.\n");
             }
         }
-        
-        // Periksa apakah suami adalah anak
-        if (suami->status == true)
+        else
         {
-            // Periksa apakah suami sudah memiliki istri
-            if (suami->first_child == NULL)
-            {
-                Person newPerson = (Person)malloc(sizeof(TPerson));
-                if (newPerson != NULL)
-                {
-                    newPerson->nama = (char *)malloc(strlen(nama) + 1);
-                    if (newPerson->nama != NULL)
-                    {
-                        strcpy(newPerson->nama, nama);
-                        newPerson->warisan = 0.0;
-                        newPerson->status = status;
-                        newPerson->next = NULL;
-                        newPerson->first_child = NULL;
-
-                        // Tambahkan istri sebagai first child dari suami (anak)
-                        suami->first_child = newPerson;
-                        printf("\tIstri berhasil disambungkan dengan status 0 menjadi first child dari node anak.\n");
-                    }
-                    else
-                    {
-                        printf("\tError: Alokasi memori untuk nama gagal.\n");
-                        free(newPerson);
-                    }
-                }
-                else
-                {
-                    printf("\tError: Alokasi memori gagal.\n");
-                }
-            }
-            else
-            {
-                printf("\tSuami (anak) sudah memiliki istri.\n");
-            }
-        }
-        
-        // Jika suami bukan root dan bukan anak
-        if (!isRoot(*family, suami) && !suami->status)
-        {
-            printf("\tNode yang dimaksud bukan ayah/root atau anak.\n");
+            printf("\tError: Node yang dimaksud bukan ayah/root.\n");
         }
     }
     else
@@ -375,33 +336,6 @@ void detailNode(Person person)
         printf("\tNama: %s\n", person->nama);
         printf("\tWarisan: %.2f\n", person->warisan);
         printf("\tStatus : %s\n", (person->status ? "Anak" : "Orang tua"));
-
-        // Periksa apakah memiliki istri
-        // if (person->first_child != NULL && person->first_child->status == false)
-        // {
-        //     printf("\tIstri: %s\n", person->first_child->nama);
-        // }
-        // else
-        // {
-        //     printf("\tTidak memiliki istri.\n");
-        // }
-
-        // // Periksa apakah memiliki anak
-        // if (person->first_child != NULL && person->first_child->next != NULL)
-        // {
-        //     printf("\tAnak-anak:\n");
-        //     Person child = person->first_child->next;
-        //     while (child != NULL)
-        //     {
-        //         printf("\t- %s\n", child->nama);
-        //         child = child->next;
-        //     }
-        // }
-        // else
-        // {
-        //     printf("\tTidak memiliki anak.\n");
-        // }
-        
     }
     else
     {
