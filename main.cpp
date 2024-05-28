@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fstream>
 #include "header.h"
 
 void freeTree(Person person)
@@ -62,11 +63,11 @@ void displayMenu()
 
 int main()
 {
+    displayAturan();
     Root family;
     createEmptyTree(&family);
     int menu;
     char namaNode[50];
-
     for (;;)
     {
         displayMenu();

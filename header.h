@@ -10,6 +10,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <fstream>
 
 typedef struct TPerson *Person;
 typedef struct TPerson {
@@ -41,4 +42,5 @@ void detailNode(Person person);
 void waitForEnter();
 void deleteNodeHelper(Person *current, char *nama);
 void deleteNode(Root *family, char *nama);
+void displayAturan();
 #endif

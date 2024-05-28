@@ -9,7 +9,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fstream>
+#include <iostream>
+#include <string>
+using namespace std;
 
+void displayAturan(){
+    system ("cls");
+    ifstream aturan ("aturan.txt");
+
+    if (!aturan.is_open()){
+        cout << "gagal membuka file\n";
+        return;
+    }
+
+    string line;
+    while (getline(aturan,line)){
+        cout <<  "\t" << line << "\n" ;
+    }
+    aturan.close();
+    waitForEnter();
+}
 void createEmptyTree(Root *family)
 {
     family->root = NULL;
