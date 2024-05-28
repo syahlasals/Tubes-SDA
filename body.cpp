@@ -504,3 +504,19 @@ void deleteNodeHelper(Person *current, char *nama) {
     deleteNodeHelper(&(*current)->next, nama);
     deleteNodeHelper(&(*current)->first_child, nama);
 }
+
+void displayFamroots(){
+    FILE *fp;
+    char text[999];
+
+    fp = fopen("Assets/FamRoots-Title.txt", "rt");
+
+    if(fp == NULL){
+        printf("\tError: File tidak ditemukan\r\t.");
+        exit(1);
+    }
+
+    while(fgets(text, sizeof(text), fp) != NULL){
+        printf("%s\r", text);
+    }
+}

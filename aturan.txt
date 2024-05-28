@@ -1,6 +1,6 @@
 
                    ____________________
-                   
+
                       Aturan Aplikasi 
                           Famroots      
              ___________________________________
@@ -12,7 +12,7 @@
 3. Warisan yang diturunkan berupa uang.
 ---------------------------------------------------------------------------
 4. Pembagian warisan:
-   - Jika ada istri, maka istri mendapatkan 5% lebih banyak dari total warisan dibandingkan anak-anaknya.
+   Ibu/Istri akan mendapatkan 5% lebih banyak dari total warisan dibandingkan anak-anaknya.
 ---------------------------------------------------------------------------
 5. Jika node ibu dihapus, maka warisannya terbagi rata kepada setiap anak-anaknya.
 ---------------------------------------------------------------------------
