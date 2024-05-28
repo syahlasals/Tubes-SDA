@@ -42,5 +42,6 @@ void detailNode(Person person);
 void waitForEnter();
 void deleteNodeHelper(Person *current, char *nama);
 void deleteNode(Root *family, char *nama);
+void displayFamroots();
 void displayAturan();
 #endif

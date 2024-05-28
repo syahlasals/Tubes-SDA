@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -485,8 +487,6 @@ void deleteNode(Root *family, char *nama) {
     deleteNodeHelper(&(family->root->first_child), nama);
     deleteNodeHelper(&(family->root->next), nama);
 }
-
-
 
 void deleteNodeHelper(Person *current, char *nama) {
     if (*current == NULL) {

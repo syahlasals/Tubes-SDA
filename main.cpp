@@ -46,13 +46,11 @@ void displayMenu()
     setColor(36); // Cyan
     printf("-----------------------------------------\n");
     setColor(33); // Yellow
-    printf("\n\t[1] Tambahkan Ayah\n");
-    printf("\t[2] Tambahkan Ibu/Istri\n");
+    printf("\t[1] Tambahkan Ayah\n");
+    printf("\t[2] Tambahkan Istri\n");
     printf("\t[3] Tambahkan Anak\n"); // Added option for adding child
     printf("\t[4] Tampilkan Pohon Keluarga\n");
     printf("\t[5] Tampilkan Jumlah Anak\n");
-    // printf("\t[6] Tampilkan Detail Istri dan Anak\n");
-    // printf("\t[7] Tampilkan Detail Ayah\n");
     printf("\t[6] Cari\n");
     printf("\t[7] Hapus Node\n");
     printf("\t[0] Keluar\n\n");
@@ -66,17 +64,54 @@ int main()
     displayAturan();
     Root family;
     createEmptyTree(&family);
+
+    char nama[50], namaSuami[50], namaAyah[50], inputWarisan[50], namaNode[50];
+    float warisan;
+
+    displayFamroots();
+
+    printf("\n=========================================\n");
+    printf("\n\tMasukkan Nama Ayah/Suami: ");
+    scanf("%s", nama);
+    do {
+        printf("\tMasukkan Warisan: ");
+        scanf("%s", inputWarisan);
+        if (!isValidFloat(inputWarisan)) {
+            printf("\tError: Input warisan harus berupa angka.\n");
+        }
+    } while (!isValidFloat(inputWarisan));
+    warisan = strtof(inputWarisan, NULL);
+    insertAyah(&family, nama, warisan, false);
+    printf("\n=========================================\n");
+    waitForEnter();
+
+    printf("\n=========================================\n");
+    printf("\n\tMasukkan Nama Ibu/Istri: ");
+    scanf("%s", nama);
+    printf("\tMasukkan Nama Suami: ");
+    scanf("%s", namaSuami);
+    insertIstri(&family, nama, namaSuami, false);
+    printf("\n=========================================\n");
+    waitForEnter();
+
+    printf("\n=========================================\n");
+    printf("\n\tMasukkan Nama Anak: ");
+    scanf("%s", nama);
+    printf("\tMasukkan Nama Ayah: ");
+    scanf("%s", namaAyah);
+    insertAnak(&family, nama, namaAyah);
+    printf("\n=========================================\n");
+    waitForEnter();
+
     int menu;
-    char namaNode[50];
+
     for (;;)
     {
+        displayFamroots();
         displayMenu();
 
         printf("\tMasukkan pilihan : ");
         scanf("%d", &menu);
-
-        char nama[50], namaSuami[50], namaAyah[50], inputWarisan[50];
-        float warisan;
 
         system("cls");
         switch (menu) {
@@ -103,7 +138,7 @@ int main()
                 insertIstri(&family, nama, namaSuami, false);
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
-            case 3: // Case for adding child
+            case 3:
                 printf("\tMasukkan Nama Anak: ");
                 scanf("%s", nama);
                 printf("\tMasukkan Nama Ayah: ");
@@ -111,7 +146,7 @@ int main()
                 insertAnak(&family, nama, namaAyah);
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
-            case 4: // Case for displaying family tree
+            case 4:
                 displayTree(&family);
                 waitForEnter(); // Menunggu input Enter dari user
                 break;
